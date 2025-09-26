@@ -43,7 +43,7 @@ def get_google_sheets_service():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                os.getenv("GOOGLE_CREDENTIALS_JSON"), SCOPES)
             creds = flow.run_local_server(port=0)
         # Salva as credenciais para as próximas execuções.
         with open('token.json', 'w') as token:
@@ -63,7 +63,7 @@ def get_google_calendar_service():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                os.getenv("GOOGLE_CREDENTIALS_JSON"), SCOPES)
             creds = flow.run_local_server(port=0)
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
